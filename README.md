@@ -734,238 +734,9 @@ Service Database   Document Upload
 
 ---
 
-# 8. Repository Structure
+# 8. Installation
 
-The repository is organized to separate source code, documentation, submission material, screenshots and configuration files.
-
-```text
-InduServer/
-│
-├── README.md
-├── SUBMISSION_GUIDE.md
-│
-├── submission/
-│   ├── PRESENTATION.md
-│   └── DEMO.md
-│
-├── src/
-│   ├── main.py
-│   │
-│   ├── api/
-│   │   ├── routes/
-│   │   └── __init__.py
-│   │
-│   ├── services/
-│   │   ├── service_manager.py
-│   │   └── __init__.py
-│   │
-│   ├── document_processing/
-│   │   ├── ocr/
-│   │   ├── validation/
-│   │   └── __init__.py
-│   │
-│   ├── models/
-│   │   └── __init__.py
-│   │
-│   └── database/
-│       ├── database.py
-│       └── __init__.py
-│
-├── docs/
-│   └── architecture.md
-│
-├── assets/
-│   └── screenshots/
-│       └── README.md
-│
-├── requirements.txt
-├── .gitignore
-└── LICENSE
-```
-
-> The exact internal folder names may be adjusted to match the final implementation. The important principle is to keep application source code, documentation, submission material and visual assets organized separately.
-
----
-
-## 8.1 What Goes Where?
-
-| Item | Location |
-|---|---|
-| Project overview | `README.md` |
-| SIH submission checklist | `SUBMISSION_GUIDE.md` |
-| Final presentation | `submission/` |
-| Presentation information | `submission/PRESENTATION.md` |
-| Demo video link | `submission/DEMO.md` |
-| Source code | `src/` |
-| API implementation | `src/api/` |
-| Service logic | `src/services/` |
-| Document processing | `src/document_processing/` |
-| Database models / logic | `src/models/` and `src/database/` |
-| Technical documentation | `docs/` |
-| Architecture documentation | `docs/architecture.md` |
-| Screenshots | `assets/screenshots/` |
-| Dependencies | `requirements.txt` |
-| Git exclusions | `.gitignore` |
-| License | `LICENSE` |
-
----
-
-# 9. Final Presentation
-
-The final SIH presentation should be maintained inside the repository whenever the file size allows it.
-
-Recommended location:
-
-```text
-submission/
-```
-
-The presentation should explain:
-
-- Problem statement
-- Existing challenges
-- Proposed solution
-- Target users
-- Key features
-- System architecture
-- Technology stack
-- AI/document-processing workflow
-- Application workflow
-- Prototype
-- Implementation
-- Impact
-- Scalability
-- Future scope
-
-If the PPT is too large for GitHub, use an accessible Google Drive or OneDrive viewer link.
-
-The accessible link should be documented in:
-
-```text
-submission/PRESENTATION.md
-```
-
----
-
-# 10. Demo Video
-
-A demo video is recommended for demonstrating the working prototype.
-
-The video should demonstrate the major workflow of InduServer.
-
-### Recommended Demo Flow
-
-```text
-Open InduServer
-       |
-       v
-Select Government Service
-       |
-       v
-View Requirements
-       |
-       v
-Upload Documents
-       |
-       v
-Run AI-Assisted Pre-Check
-       |
-       v
-Display Extracted Information
-       |
-       v
-Display Validation Results
-       |
-       v
-Create / Submit Application
-       |
-       v
-Open Application Dashboard
-       |
-       v
-Track Application Status
-```
-
-The demo should focus on showing the actual working prototype rather than only presenting static slides.
-
-Add the YouTube or Google Drive link in:
-
-```text
-submission/DEMO.md
-```
-
----
-
-# 11. Screenshots / Prototype Photos
-
-Important screenshots and prototype photographs should be stored in:
-
-```text
-assets/screenshots/
-```
-
-Recommended screenshots include:
-
-### 11.1 Home Page
-
-Show the main InduServer interface and the available navigation or service-discovery functionality.
-
-### 11.2 Service Discovery
-
-Show how a user can find and select a relevant government service.
-
-### 11.3 Requirement Page
-
-Show the documents and requirements associated with a selected service.
-
-### 11.4 Document Upload
-
-Show the interface used to upload a document for pre-checking.
-
-### 11.5 OCR / Information Extraction
-
-Show extracted information from an uploaded document.
-
-### 11.6 AI-Assisted Pre-Check
-
-Show the result generated after document analysis.
-
-### 11.7 Validation Result
-
-Show whether the uploaded document has missing information, inconsistencies or other issues requiring attention.
-
-### 11.8 Application Dashboard
-
-Show active and previous applications.
-
-### 11.9 Application Status
-
-Show the current status and progress of an application.
-
-### 11.10 Final Prototype
-
-Show the overall working system.
-
-Suggested naming convention:
-
-```text
-01_home.png
-02_service_discovery.png
-03_requirements.png
-04_document_upload.png
-05_ocr_result.png
-06_ai_precheck.png
-07_validation_result.png
-08_application_dashboard.png
-09_application_status.png
-10_final_prototype.png
-```
-
----
-
-# 12. Installation
-
-## 12.1 Clone the Repository
+## 8.1 Clone the Repository
 
 ```bash
 git clone <YOUR_REPOSITORY_URL>
@@ -974,7 +745,7 @@ cd InduServer
 
 ---
 
-## 12.2 Create a Virtual Environment
+## 8.2 Create a Virtual Environment
 
 Windows:
 
@@ -997,7 +768,7 @@ source .venv/bin/activate
 
 ---
 
-## 12.3 Install Dependencies
+## 8.3 Install Dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -1007,7 +778,7 @@ If the project contains additional system-level dependencies, install them accor
 
 ---
 
-# 13. Run
+# 9. Run
 
 Start the FastAPI backend using:
 
@@ -1033,7 +804,7 @@ If the project uses a separate frontend, start the frontend according to its pro
 
 ---
 
-# 14. API Overview
+# 10. API Overview
 
 The backend provides API endpoints for communication between the frontend and processing modules.
 
@@ -1054,7 +825,7 @@ The exact endpoint names should correspond to the implemented API routes in the 
 
 ---
 
-# 15. Document Processing Pipeline
+# 11. Document Processing Pipeline
 
 The document-processing pipeline is designed as a sequence of independent stages.
 
@@ -1106,7 +877,7 @@ This modular approach makes it possible to improve individual processing stages 
 
 ---
 
-# 16. Application Processing Pipeline
+# 12. Application Processing Pipeline
 
 The application-processing lifecycle can be represented as:
 
@@ -1156,40 +927,9 @@ The pre-check stage is intended to help users identify potential issues before f
 
 ---
 
-# 17. Security and Privacy Considerations
-
-Since government-service applications may involve sensitive information, security and privacy are important considerations.
-
-The system should follow secure development practices such as:
-
-- Never committing passwords or API keys
-- Using environment variables for secrets
-- Protecting uploaded documents
-- Validating uploaded file types
-- Limiting access to application information
-- Using secure authentication where implemented
-- Using HTTPS in production
-- Applying appropriate database access controls
-- Avoiding unnecessary storage of personal information
-- Removing temporary files when they are no longer required
-
-Sensitive configuration files should not be committed to GitHub.
-
-Examples include:
-
-```text
-.env
-*.key
-*.pem
-credentials.json
-secrets.json
-```
-
-These should be excluded through `.gitignore` where applicable.
-
 ---
 
-# 18. Scalability
+# 13. Scalability
 
 The architecture of InduServer can be extended to support a larger number of services and users.
 
@@ -1210,7 +950,7 @@ A modular design allows new government services to be added without rebuilding t
 
 ---
 
-# 19. Impact
+# 14. Impact
 
 InduServer aims to simplify the interaction between citizens and digital government services.
 
@@ -1258,7 +998,7 @@ Service Guidance       Document Pre-check
 
 ---
 
-# 20. Advantages
+# 15. Advantages
 
 InduServer provides several advantages over a fragmented service-discovery experience.
 
@@ -1288,7 +1028,7 @@ The platform can be expanded with additional services and processing modules.
 
 ---
 
-# 21. Limitations
+# 16. Limitations
 
 The current prototype may have limitations depending on the available government-service data and integrations.
 
@@ -1306,39 +1046,39 @@ The AI-assisted pre-check should therefore be considered a preliminary assistanc
 
 ---
 
-# 22. Future Scope
+# 17. Future Scope
 
 InduServer can be extended with additional capabilities in future versions.
 
-### 22.1 More Government Services
+### 17.1 More Government Services
 
 The platform can integrate information for a larger number of government services across different departments.
 
-### 22.2 Multilingual Support
+### 17.2 Multilingual Support
 
 Support for Indian languages can improve accessibility for users who are more comfortable using regional languages.
 
-### 22.3 Voice Assistance
+### 17.3 Voice Assistance
 
 Voice-based interaction can make the platform easier to use for users with limited digital literacy.
 
-### 22.4 Advanced Document Verification
+### 17.4 Advanced Document Verification
 
 Future versions can incorporate more advanced AI techniques for document classification, validation and anomaly detection.
 
-### 22.5 Personalized Service Recommendations
+### 17.5 Personalized Service Recommendations
 
 The platform can recommend potentially relevant government services based on the user's stated requirement.
 
-### 22.6 Mobile Application
+### 17.6 Mobile Application
 
 A dedicated Android/iOS application could provide easier access to the platform.
 
-### 22.7 Government API Integration
+### 17.7 Government API Integration
 
 Where officially authorized APIs are available, InduServer could integrate directly with government systems for service information and application status.
 
-### 22.8 Notifications
+### 17.8 Notifications
 
 Users could receive notifications regarding:
 
@@ -1348,7 +1088,7 @@ Users could receive notifications regarding:
 - Submission confirmations
 - Required actions
 
-### 22.9 Analytics
+### 17.9 Analytics
 
 An administrative analytics layer could provide insights into:
 
@@ -1358,13 +1098,13 @@ An administrative analytics layer could provide insights into:
 - Processing stages
 - Frequently encountered requirements
 
-### 22.10 Secure Cloud Deployment
+### 17.10 Secure Cloud Deployment
 
 The platform can be deployed using scalable cloud infrastructure with appropriate security, monitoring and access controls.
 
 ---
 
-# 23. Development Roadmap
+# 18. Development Roadmap
 
 The project can be developed incrementally.
 
@@ -1403,7 +1143,7 @@ Advanced Integrations
 
 ---
 
-# 25. Example End-to-End Workflow
+# 19. Example End-to-End Workflow
 
 ```text
 1. User opens InduServer
@@ -1453,7 +1193,7 @@ Advanced Integrations
 
 ---
 
-# 26. Expected User Experience
+# 20. Expected User Experience
 
 The platform is designed around a simple principle:
 
@@ -1475,7 +1215,7 @@ The interface should clearly communicate:
 
 ---
 
-# 27. Project Status
+# 21. Project Status
 
 InduServer is being developed as a prototype for the Smart India Hackathon 2026 problem statement.
 
@@ -1494,7 +1234,7 @@ The architecture is designed to allow additional services, AI modules, integrati
 
 ---
 
-# 28. Conclusion
+# 22. Conclusion
 
 InduServer aims to make government-service interactions simpler by bringing service discovery, requirement guidance, document assistance, application management and tracking into one platform.
 
