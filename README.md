@@ -1401,59 +1401,6 @@ PHASE 8
 Advanced Integrations
 ```
 
-This approach allows individual modules to be developed and tested independently.
-
----
-
-# 24. Testing
-
-Testing should cover the major functional components of the system.
-
-### Service Module Testing
-
-Verify that:
-
-- Services can be displayed
-- Service information is retrieved correctly
-- Requirements are associated with the correct service
-
-### Document Module Testing
-
-Verify that:
-
-- Documents can be uploaded
-- Supported formats are accepted
-- Unsupported formats are rejected
-- OCR produces usable output
-
-### Validation Testing
-
-Verify that:
-
-- Missing fields are detected
-- Invalid formats are identified
-- Required documents are checked
-- Validation results are displayed correctly
-
-### Application Testing
-
-Verify that:
-
-- Applications can be created
-- Applications can be submitted
-- Application status can be retrieved
-- Application history is maintained
-
-### UI Testing
-
-Verify that:
-
-- Navigation works
-- Forms work correctly
-- Document uploads work
-- Results are displayed clearly
-- Application status is understandable
-
 ---
 
 # 25. Example End-to-End Workflow
@@ -1525,112 +1472,10 @@ The interface should clearly communicate:
 
 ---
 
-# 27. Project Repository Guidelines
-
-The repository should remain organized and understandable to reviewers.
-
-### Source Code
-
-Place implementation code inside:
-
-```text
-src/
-```
-
-### Documentation
-
-Place technical documentation inside:
-
-```text
-docs/
-```
-
-### Screenshots
-
-Place screenshots and prototype images inside:
-
-```text
-assets/screenshots/
-```
-
-### Submission Files
-
-Place presentation and demo information inside:
-
-```text
-submission/
-```
-
-### Dependencies
-
-Maintain required Python packages inside:
-
-```text
-requirements.txt
-```
-
-### Secrets
-
-Never commit confidential credentials.
-
-Use:
-
-```text
-.env
-```
-
-for local environment variables and add it to `.gitignore`.
 
 ---
 
-# 28. Repository Submission Checklist
-
-Before submitting the GitHub repository, verify the following:
-
-- [ ] Repository is public / accessible to reviewers
-- [ ] `README.md` is complete
-- [ ] Problem Statement ID is correct
-- [ ] Project name is correct
-- [ ] Solution description is present
-- [ ] Key features are documented
-- [ ] Technology stack is documented
-- [ ] Architecture is documented
-- [ ] Repository structure is documented
-- [ ] Screenshots are uploaded
-- [ ] Presentation is included or linked
-- [ ] Demo video is included or linked
-- [ ] Installation instructions are provided
-- [ ] Run instructions are provided
-- [ ] Future scope is documented
-- [ ] No passwords are committed
-- [ ] No API keys are committed
-- [ ] No access tokens are committed
-- [ ] No `.env` file containing secrets is committed
-- [ ] `requirements.txt` is up to date
-- [ ] Source code is organized
-- [ ] Final prototype is functional
-
----
-
-# 29. Important
-
-Before submission, make sure the repository is accessible to reviewers.
-
-Do not upload:
-
-- Passwords
-- API keys
-- Access tokens
-- `.env` files containing secrets
-- Database credentials
-- Private certificates
-- Other confidential credentials
-
-Use `.gitignore` to prevent sensitive configuration files and generated files from being committed.
-
----
-
-# 30. Project Status
+# 27. Project Status
 
 InduServer is being developed as a prototype for the Smart India Hackathon 2026 problem statement.
 
@@ -1649,7 +1494,7 @@ The architecture is designed to allow additional services, AI modules, integrati
 
 ---
 
-# 31. Conclusion
+# 28. Conclusion
 
 InduServer aims to make government-service interactions simpler by bringing service discovery, requirement guidance, document assistance, application management and tracking into one platform.
 
