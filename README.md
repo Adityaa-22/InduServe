@@ -1,6 +1,6 @@
-# InduServer – AI-Powered Government Service & Document Assistance Platform
+# InduServer – Government Service & Application Management Platform
 
-InduServer is a unified digital platform designed to simplify access to government services by helping users discover relevant services, understand their requirements, prepare required documents, perform AI-assisted document pre-checks, submit applications, and track their application status through a centralized interface.
+InduServer is a unified digital platform designed to simplify access to government services by helping users discover relevant services, understand requirements, prepare required information and documents, submit applications, and track application status through a centralized interface.
 
 The platform aims to reduce the complexity of navigating multiple government services and make the overall application process more structured, accessible, and user-friendly.
 
@@ -10,7 +10,7 @@ The platform aims to reduce the complexity of navigating multiple government ser
 
 - **Project Title:** InduServer
 - **Problem Statement ID:** SIH26130
-- **Problem Statement:** AI-powered platform for simplifying access to government services and assisting citizens with service discovery, requirements, documentation, and application processes
+- **Problem Statement:** Digital platform for simplifying access to government services and assisting citizens with service discovery, requirements, documentation, and application processes
 - **Category:** Software
 - **Theme:** E-Governance / Digital Governance
 - **Hackathon:** Smart India Hackathon 2026
@@ -19,21 +19,20 @@ The platform aims to reduce the complexity of navigating multiple government ser
 
 ## 2. Problem Statement
 
-Citizens often need to interact with different government services for various requirements such as certificates, registrations, applications, documents, and other public services.
+Citizens often need to interact with different government services for certificates, registrations, applications, documents, and other public services.
 
 The existing process can be difficult because users may have to:
 
 - Search across multiple government portals
 - Understand different eligibility requirements
 - Determine which documents are required
-- Check whether their documents contain all necessary information
 - Navigate different application procedures
 - Track applications across different systems
-- Repeatedly search for information that may already be available through different sources
+- Repeatedly search for information from different sources
 
 This creates unnecessary complexity, particularly for users who are unfamiliar with digital government platforms.
 
-There is a need for a centralized and intelligent platform that can guide users through the government-service journey and reduce the effort required to understand and complete an application.
+There is a need for a centralized platform that can guide users through the government-service journey and reduce the effort required to understand and complete an application.
 
 ---
 
@@ -41,7 +40,7 @@ There is a need for a centralized and intelligent platform that can guide users 
 
 InduServer provides a centralized interface through which users can discover relevant government services and understand the requirements associated with them.
 
-The platform combines service discovery, requirement guidance, document processing, AI-assisted pre-checking, application management, and status tracking into a unified workflow.
+The platform combines service discovery, requirement guidance, document management, application management, compliance information, notifications, and status tracking into a unified workflow.
 
 ### Core Concept
 
@@ -61,14 +60,8 @@ The platform combines service discovery, requirement guidance, document processi
                            |
                            v
                   +----------------+
-                  | Upload / Check |
-                  | Documents      |
-                  +----------------+
-                           |
-                           v
-                  +----------------+
-                  | AI-Assisted    |
-                  | Document Check |
+                  | Prepare Needed |
+                  | Information    |
                   +----------------+
                            |
                            v
@@ -83,9 +76,9 @@ The platform combines service discovery, requirement guidance, document processi
                   +----------------+
 ```
 
-The system is intended to act as an intelligent assistance layer between citizens and government services.
+The system is intended to act as a centralized assistance layer between citizens and government services.
 
-Instead of requiring users to manually search through multiple services and requirements, InduServer presents the relevant information in a structured manner.
+Instead of requiring users to manually search through multiple services and requirements, InduServer presents relevant information in a structured manner.
 
 ---
 
@@ -187,50 +180,37 @@ This provides users with a structured way of monitoring their applications.
 
 ---
 
-## 4.4 AI-Assisted Document Pre-Check
+## 4.4 Document and Information Management
 
-InduServer provides an AI-assisted document pre-check mechanism to identify potential issues before an application is submitted.
+InduServer enables users to organize the information and documents required for an application.
 
-Uploaded documents can be processed using OCR and AI-based document analysis to extract readable information.
+The platform can help users:
 
-The extracted information can then be used to identify potential problems such as:
+- View required documents
+- Upload or provide required information
+- Review application details before submission
+- Identify missing requirements
+- Maintain documents associated with an application
+- Keep application information organized
 
-- Missing information
-- Incomplete documents
-- Poor-quality or unclear scans
-- Unsupported document formats
-- Missing required elements where applicable
-- Potential inconsistencies in extracted information
+The system acts as a structured application-management platform and does not perform OCR-based document processing.
 
-The objective of this module is not to replace official government verification.
-
-Instead, it acts as a preliminary assistance mechanism that can help users identify possible issues before submitting an application.
-
-### Document Processing Flow
+### Document Preparation Flow
 
 ```text
-Document Upload
+Select Service
        |
        v
-Image / Document Pre-processing
+View Requirements
        |
        v
-OCR Processing
+Prepare Required Documents
        |
        v
-Information Extraction
+Provide Required Information
        |
        v
-Document Validation
-       |
-       v
-AI-Assisted Pre-Check
-       |
-       v
-Issues / Requirements Identified
-       |
-       v
-User Review
+Review Application
        |
        v
 Application Submission
@@ -238,92 +218,24 @@ Application Submission
 
 ---
 
-## 4.5 OCR-Based Information Extraction
+## 4.5 Compliance Management
 
-The document processing component can use Optical Character Recognition (OCR) to convert text present in uploaded documents into machine-readable information.
+InduServer can maintain compliance-related information associated with applications, users, or businesses.
 
-The extracted information can be used for:
+Compliance management can include:
 
-- Identifying document details
-- Extracting names and identifiers
-- Detecting dates
-- Extracting relevant fields
-- Comparing extracted information with service requirements
-- Supporting document validation
-- Generating structured application information
+- Compliance-related requirements
+- Important deadlines
+- Required actions
+- Application-related records
+- Status information
+- Updates and notifications
 
-### OCR Workflow
-
-```text
-Uploaded Document
-        |
-        v
-Document Pre-processing
-        |
-        v
-OCR Engine
-        |
-        v
-Raw Extracted Text
-        |
-        v
-Information Parsing
-        |
-        v
-Structured Information
-```
-
-OCR allows the platform to process information from documents without requiring users to manually enter every field.
+This helps users remain aware of important requirements during the application process.
 
 ---
 
-## 4.6 Document Validation
-
-After information is extracted from a document, InduServer can perform validation checks against the expected requirements.
-
-Validation can include:
-
-- Required field presence
-- Document completeness
-- Information consistency
-- Date validation
-- Format validation
-- Basic document quality checks
-- Required document verification
-
-The validation layer helps identify possible issues before the user proceeds with the application.
-
-### Validation Flow
-
-```text
-Extracted Information
-        |
-        v
-Required Fields Check
-        |
-        v
-Format Check
-        |
-        v
-Consistency Check
-        |
-        v
-Requirement Comparison
-        |
-        v
-Validation Result
-```
-
-The result can be presented as a clear status such as:
-
-- Valid
-- Requires Review
-- Missing Information
-- Invalid / Incomplete
-
----
-
-## 4.7 Centralized Application Dashboard
+## 4.6 Centralized Application Dashboard
 
 The platform provides a centralized dashboard where users can monitor their applications.
 
@@ -333,7 +245,6 @@ The dashboard can display:
 - Selected service
 - Submission date
 - Current application status
-- Pre-check results
 - Required actions
 - Application progress
 - Relevant updates
@@ -353,12 +264,28 @@ A centralized dashboard allows users to track their applications without repeate
 | Status         : UNDER REVIEW                  |
 |                                                |
 | [✓] Application Submitted                      |
-| [✓] Documents Uploaded                         |
-| [✓] Preliminary Check Completed               |
+| [✓] Required Information Provided              |
 | [ ] Under Official Review                      |
 | [ ] Final Decision                             |
 +------------------------------------------------+
 ```
+
+---
+
+## 4.7 Notifications
+
+The platform can notify users about important application-related events.
+
+Notifications may include:
+
+- Application submission confirmations
+- Application status changes
+- Approval or rejection updates
+- Compliance-related updates
+- Missing requirements
+- Required user actions
+
+This helps users stay informed without needing to repeatedly check the application manually.
 
 ---
 
@@ -378,9 +305,6 @@ Understand
 Prepare
    |
    v
-Check
-   |
-   v
 Submit
    |
    v
@@ -391,25 +315,25 @@ This improves the overall usability of the platform and reduces confusion during
 
 ---
 
-## 4.9 Structured Error and Requirement Reporting
+## 4.9 Structured Requirement Reporting
 
-When a problem is detected during document or application pre-checking, the system can provide a structured explanation instead of simply returning a failure message.
+When an application is incomplete or requires attention, the system can provide a structured explanation instead of simply returning a failure message.
 
 For example:
 
 ```text
-DOCUMENT CHECK RESULT
+APPLICATION STATUS
 
 Status: REVIEW REQUIRED
 
-Issues Detected:
-- Required field may be missing
-- Document image quality is low
+Items Requiring Attention:
+- Required information may be missing
 - Additional supporting document may be required
+- Application details need review
 
 Suggested Action:
-Review the document and provide the required information
-before continuing with the application.
+Review the application requirements and provide the
+required information before continuing.
 ```
 
 This allows users to understand what needs attention and take corrective action.
@@ -426,7 +350,6 @@ Application history may include:
 - Service selected
 - Submission date
 - Application status
-- Document pre-check result
 - Updates
 - Final outcome
 
@@ -436,29 +359,31 @@ This provides users with a centralized record of their interactions with the pla
 
 # 5. Technology Stack
 
-The technology stack of InduServer is organized according to the requirements of the platform.
+The technology stack of InduServer is organized according to the current implementation.
 
 ## 5.1 Frontend
 
 - HTML
 - CSS
 - JavaScript
+- Node.js / npm-based frontend setup
 
-The frontend provides the user interface for:
+The frontend provides interfaces for:
 
 - Service discovery
 - Requirement viewing
-- Document upload
+- Application submission
 - Application management
 - Status tracking
-- Displaying AI-assisted document results
+- Administrative management
 
 ---
 
 ## 5.2 Backend
 
-- Python
-- FastAPI
+- JavaScript
+- Node.js
+- Express.js
 - REST APIs
 
 The backend acts as the central processing layer.
@@ -466,66 +391,48 @@ The backend acts as the central processing layer.
 It handles:
 
 - API requests
-- Service-related operations
-- Document uploads
-- OCR processing
-- Document validation
-- Application management
+- User authentication
+- User management
+- Business information
+- Application and approval management
+- Compliance information
+- Notifications
 - Database communication
-- Result generation
 
 ---
 
-## 5.3 AI / Document Processing
+## 5.3 Database
 
-The document-processing layer can use:
+- MongoDB
+- Mongoose
 
-- OCR
-- Machine Learning / AI-based processing
-- Image processing
-- Information extraction
-- Document validation
-
-The AI-assisted layer supports preliminary document analysis and helps identify potential issues before submission.
-
----
-
-## 5.4 Database
-
-A relational database can be used to store structured application information.
+MongoDB is used to store and manage structured application data.
 
 Possible stored information includes:
 
 - Users
-- Government services
-- Service requirements
+- Business information
 - Applications
-- Documents
-- Extracted information
-- Validation results
+- Approvals
+- Compliance information
+- Notifications
 - Application status
 - Application history
 
-The database provides persistent storage and allows the system to maintain application records.
-
 ---
 
-## 5.5 Deployment
+## 5.4 Development Tools
 
-The application can be deployed using:
-
-- Docker
-- Cloud infrastructure
-- Linux server environment
-- Web server / API server
-
-Containerized deployment can make the system easier to reproduce and scale.
+- npm
+- Git
+- GitHub
+- Visual Studio Code
 
 ---
 
 # 6. System Architecture
 
-InduServer follows a modular architecture in which the frontend communicates with backend APIs and the backend coordinates application processing, document processing and data storage.
+InduServer follows a modular client-server architecture in which the frontend communicates with backend APIs and the backend manages applications, user information, compliance information, notifications, and data storage.
 
 ```text
                          +----------------+
@@ -541,36 +448,25 @@ InduServer follows a modular architecture in which the frontend communicates wit
                                   v
                          +----------------+
                          |   BACKEND API  |
-                         |    FastAPI     |
+                         | Node.js /      |
+                         | Express.js     |
                          +----------------+
                            /      |       \
                           /       |        \
                          v        v         v
                 +-----------+ +--------+ +------------------+
-                |  Service  | |Database| |    Document      |
-                |  Module   | |        | |   Processing     |
+                |  Routes   | |Models  | |   Middleware     |
                 +-----------+ +--------+ +------------------+
-                                             |
-                                             v
-                                    +------------------+
-                                    | OCR / AI Module  |
-                                    +------------------+
-                                             |
-                                             v
-                                    +------------------+
-                                    |    Validation    |
-                                    +------------------+
-                                             |
-                                             v
-                                    +------------------+
-                                    | Result Generator |
-                                    +------------------+
-                                             |
-                                             v
-                                    +------------------+
-                                    | Application /    |
-                                    | User Dashboard   |
-                                    +------------------+
+                      |           |             |
+                      v           v             v
+                +--------------------------------------+
+                | Controllers / Application Management |
+                +--------------------------------------+
+                                  |
+                                  v
+                         +----------------+
+                         |    MongoDB     |
+                         +----------------+
 ```
 
 ---
@@ -579,15 +475,15 @@ InduServer follows a modular architecture in which the frontend communicates wit
 
 ### User Interface
 
-Provides the interface through which users:
+Provides the interface through which users can:
 
 - Search for services
 - Select services
 - View requirements
-- Upload documents
-- Review pre-check results
 - Submit applications
+- Review application details
 - Track application status
+- View notifications
 
 ---
 
@@ -597,70 +493,40 @@ The backend acts as the central communication layer.
 
 It receives requests from the frontend and communicates with:
 
-- Service modules
-- Database
-- OCR system
-- AI processing components
-- Validation modules
+- Authentication middleware
+- Routes
+- Controllers
+- Database models
 - Application management modules
+- Notification modules
+- Compliance modules
 
 ---
 
-### Service Module
+### Routes and Controllers
 
-The service module manages information related to available government services.
+The backend uses routes and controllers to organize API functionality.
 
-It can maintain:
-
-- Service names
-- Service descriptions
-- Requirements
-- Eligibility information
-- Supporting documents
-- Application-related instructions
-
----
-
-### Document Processing Module
-
-The document-processing module receives uploaded documents and performs preliminary processing.
-
-Typical operations include:
+Typical backend responsibilities include:
 
 ```text
-Upload
+Request
   |
   v
-Format Check
+Route
   |
   v
-Image Pre-processing
+Middleware
   |
   v
-OCR
+Controller
   |
   v
-Information Extraction
+Model
   |
   v
-Validation
+MongoDB
 ```
-
----
-
-### AI-Assisted Pre-Check Module
-
-The AI-assisted layer analyzes extracted document information and helps identify possible issues.
-
-It can assist in:
-
-- Detecting missing information
-- Identifying inconsistencies
-- Checking document requirements
-- Supporting document classification
-- Generating preliminary feedback
-
-The output is intended as an assistance mechanism rather than an official government decision.
 
 ---
 
@@ -673,13 +539,15 @@ It can maintain relationships between:
 ```text
 User
  |
+ +---- Business Information
+ |
  +---- Application
           |
-          +---- Service
+          +---- Approval
           |
-          +---- Documents
+          +---- Compliance Information
           |
-          +---- Validation Results
+          +---- Notifications
           |
           +---- Status History
 ```
@@ -699,37 +567,19 @@ Frontend
  v
 Backend API
  |
- +--------------------+
- |                    |
- v                    v
-Service Database   Document Upload
-                        |
-                        v
-                 Document Processing
-                        |
-                        v
-                       OCR
-                        |
-                        v
-                Information Extraction
-                        |
-                        v
-                    Validation
-                        |
-                        v
-                 AI-Assisted Check
-                        |
-                        v
-                 Result Generation
-                        |
-                        v
-                 Application Module
-                        |
-                        v
-                 Database Storage
-                        |
-                        v
-                  User Dashboard
+ +---------------------+
+ |          |          |
+ v          v          v
+Routes   Middleware  Controllers
+                         |
+                         v
+                      Models
+                         |
+                         v
+                      MongoDB
+                         |
+                         v
+                 User Dashboard
 ```
 
 ---
@@ -745,139 +595,103 @@ cd InduServer
 
 ---
 
-## 8.2 Create a Virtual Environment
+## 8.2 Backend Setup
 
-Windows:
+Move into the backend directory:
 
 ```bash
-python -m venv .venv
+cd src/backend/InduServe
 ```
 
-Activate:
+Install dependencies:
 
 ```bash
-.venv\Scripts\activate
-```
-
-Linux / macOS:
-
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
+npm install
 ```
 
 ---
 
-## 8.3 Install Dependencies
+## 8.3 Environment Variables
 
-```bash
-pip install -r requirements.txt
+Create a `.env` file in the backend directory and add the required configuration values.
+
+Example:
+
+```env
+PORT=5000
+MONGODB_URI=your_mongodb_connection_string
+JWT_SECRET=your_secret_key
 ```
 
-If the project contains additional system-level dependencies, install them according to the relevant module documentation.
+Do not upload actual `.env` files or secrets to GitHub.
+
+---
+
+## 8.4 Frontend Setup
+
+Move into the frontend directory:
+
+```bash
+cd src/frontend/industrial-portal/industrial-portal
+```
+
+Install frontend dependencies:
+
+```bash
+npm install
+```
 
 ---
 
 # 9. Run
 
-Start the FastAPI backend using:
+Start the backend from the backend directory:
 
 ```bash
-uvicorn src.main:app --reload
+node index.js
 ```
 
-The API server will start locally.
+If a development script is configured in `package.json`, use:
 
-The default development address is:
-
-```text
-http://127.0.0.1:8000
+```bash
+npm run dev
 ```
 
-FastAPI documentation can normally be accessed through:
+Run the frontend using the npm command configured in its `package.json`.
 
-```text
-http://127.0.0.1:8000/docs
+For example:
+
+```bash
+npm start
 ```
 
-If the project uses a separate frontend, start the frontend according to its project configuration.
+The exact frontend command depends on the final frontend configuration.
 
 ---
 
 # 10. API Overview
 
-The backend provides API endpoints for communication between the frontend and processing modules.
+The backend provides API endpoints for communication between the frontend and the application-management modules.
 
-A typical application flow can use endpoints for:
+Typical API functionality can include:
 
 ```text
-GET     /services
-GET     /services/{service_id}
-POST    /documents/upload
-POST    /documents/precheck
+POST    /register
+POST    /login
+GET     /users
 POST    /applications
 GET     /applications
 GET     /applications/{application_id}
-GET     /applications/{application_id}/status
+PUT     /applications/{application_id}
+GET     /notifications
+GET     /compliance
 ```
 
 The exact endpoint names should correspond to the implemented API routes in the source code.
 
 ---
 
-# 11. Document Processing Pipeline
-
-The document-processing pipeline is designed as a sequence of independent stages.
-
-```text
-                 UPLOADED DOCUMENT
-                         |
-                         v
-                +------------------+
-                | File Validation  |
-                +------------------+
-                         |
-                         v
-                +------------------+
-                | Pre-processing   |
-                +------------------+
-                         |
-                         v
-                +------------------+
-                | OCR Processing   |
-                +------------------+
-                         |
-                         v
-                +------------------+
-                | Text Extraction  |
-                +------------------+
-                         |
-                         v
-                +------------------+
-                | Field Extraction |
-                +------------------+
-                         |
-                         v
-                +------------------+
-                | Validation       |
-                +------------------+
-                         |
-                         v
-                +------------------+
-                | AI Pre-check      |
-                +------------------+
-                         |
-                         v
-                +------------------+
-                | Result Generation |
-                +------------------+
-```
-
-This modular approach makes it possible to improve individual processing stages without redesigning the entire system.
-
----
-
-# 12. Application Processing Pipeline
+# 11. Application Processing Pipeline
 
 The application-processing lifecycle can be represented as:
 
@@ -891,22 +705,10 @@ Service Selection
 Requirements Display
  |
  v
-Document Preparation
+Application Preparation
  |
  v
-Document Upload
- |
- v
-AI-Assisted Pre-Check
- |
- +-------- Issues --------+
- |                        |
- |                        v
- |                 User Correction
- |                        |
- |                        +------+
- |                               |
- +-------------------------------+
+Provide Required Information
  |
  v
 Application Submission
@@ -923,9 +725,25 @@ UNDER REVIEW
 APPROVED              REJECTED
 ```
 
-The pre-check stage is intended to help users identify potential issues before formal submission.
+This workflow helps users understand the stage and status of their applications.
 
 ---
+
+# 12. Administrative Management
+
+Administrators can use the platform to manage submitted applications and monitor their status.
+
+Administrative functionality can include:
+
+- Viewing submitted applications
+- Reviewing application details
+- Updating application status
+- Approving or rejecting applications
+- Monitoring compliance-related information
+- Managing notifications
+- Viewing user and business information
+
+The administrative interface provides a centralized view for application management.
 
 ---
 
@@ -938,13 +756,11 @@ Potential scalability improvements include:
 - Modular service architecture
 - REST-based backend APIs
 - Database indexing
-- Containerized deployment
 - Cloud infrastructure
 - Horizontal API scaling
-- Background document-processing jobs
-- Caching frequently accessed service information
-- Separate AI processing services
+- Caching frequently accessed information
 - Centralized logging and monitoring
+- Automated deployment pipelines
 
 A modular design allows new government services to be added without rebuilding the entire platform.
 
@@ -959,17 +775,17 @@ InduServer aims to simplify the interaction between citizens and digital governm
 - Easier service discovery
 - Clearer requirements
 - Reduced manual searching
-- Document pre-check assistance
+- Organized application preparation
 - Centralized application tracking
 - Improved understanding of application requirements
 
 ### For Government Service Ecosystems
 
 - Better structured citizen interaction
-- Reduced avoidable application errors
 - Improved digital-service accessibility
 - Potential reduction in incomplete submissions
 - Better organization of service information
+- More transparent application workflows
 
 ### Overall Impact
 
@@ -985,7 +801,7 @@ Information Overload
        +----------------------+
        |                      |
        v                      v
-Service Guidance       Document Pre-check
+Service Guidance       Application Management
        |                      |
        +----------+-----------+
                   |
@@ -1010,13 +826,9 @@ Users can access service information and application assistance from one platfor
 
 The platform organizes the application process into understandable steps.
 
-### Document Assistance
+### Centralized Information
 
-AI-assisted pre-checking can identify possible issues before formal submission.
-
-### Reduced Manual Effort
-
-OCR and information extraction can reduce repetitive manual data entry.
+Users can view service requirements, application details, and relevant updates in one place.
 
 ### Centralized Tracking
 
@@ -1024,7 +836,7 @@ Users can monitor their applications through a single dashboard.
 
 ### Modular Architecture
 
-The platform can be expanded with additional services and processing modules.
+The platform can be expanded with additional services and management modules.
 
 ---
 
@@ -1035,14 +847,12 @@ The current prototype may have limitations depending on the available government
 Potential limitations include:
 
 - Availability of reliable service information
-- OCR accuracy for poor-quality documents
-- Variations in document formats
 - Limited integration with official government APIs
 - Dependence on internet connectivity
 - Need for additional validation for production use
 - Requirement for authorized access to official government databases where applicable
 
-The AI-assisted pre-check should therefore be considered a preliminary assistance layer and not an official verification or approval mechanism.
+The platform is intended as an assistance and management layer and does not replace official government verification or approval processes.
 
 ---
 
@@ -1062,9 +872,15 @@ Support for Indian languages can improve accessibility for users who are more co
 
 Voice-based interaction can make the platform easier to use for users with limited digital literacy.
 
-### 17.4 Advanced Document Verification
+### 17.4 Enhanced Compliance Management
 
-Future versions can incorporate more advanced AI techniques for document classification, validation and anomaly detection.
+Future versions can include:
+
+- Compliance deadlines
+- Requirement checklists
+- Renewal reminders
+- Historical compliance records
+- Compliance status tracking
 
 ### 17.5 Personalized Service Recommendations
 
@@ -1093,14 +909,14 @@ Users could receive notifications regarding:
 An administrative analytics layer could provide insights into:
 
 - Application volumes
-- Common document issues
 - Service usage
 - Processing stages
 - Frequently encountered requirements
+- Application status trends
 
 ### 17.10 Secure Cloud Deployment
 
-The platform can be deployed using scalable cloud infrastructure with appropriate security, monitoring and access controls.
+The platform can be deployed using scalable cloud infrastructure with appropriate security, monitoring, and access controls.
 
 ---
 
@@ -1118,19 +934,19 @@ Requirement Guidance
         |
         v
 PHASE 3
-Document Upload
+User Authentication
         |
         v
 PHASE 4
-OCR & Information Extraction
+Application Management
         |
         v
 PHASE 5
-AI-Assisted Pre-Check
+Compliance Management
         |
         v
 PHASE 6
-Application Management
+Notifications
         |
         v
 PHASE 7
@@ -1158,37 +974,25 @@ Advanced Integrations
 4. User views requirements
              |
              v
-5. User prepares required documents
+5. User prepares required information and documents
              |
              v
-6. User uploads documents
+6. User completes the application
              |
              v
-7. OCR extracts document information
+7. Application is submitted
              |
              v
-8. AI-assisted pre-check analyzes information
+8. Application enters review stage
              |
              v
-9. Potential issues are displayed
+9. User receives status updates
              |
              v
-10. User corrects missing information if required
+10. User tracks application status
              |
              v
-11. Application is prepared
-             |
-             v
-12. Application is submitted
-             |
-             v
-13. Application enters review stage
-             |
-             v
-14. User tracks application status
-             |
-             v
-15. Application reaches final status
+11. Application reaches final status
 ```
 
 ---
@@ -1197,7 +1001,7 @@ Advanced Integrations
 
 The platform is designed around a simple principle:
 
-> **Discover → Understand → Prepare → Check → Submit → Track**
+> **Discover → Understand → Prepare → Submit → Track**
 
 Users should not need to understand the internal technical architecture to use the platform.
 
@@ -1206,12 +1010,8 @@ The interface should clearly communicate:
 - What service the user is applying for
 - What information is required
 - Which documents are required
-- Whether uploaded documents have potential issues
 - What action the user should take next
 - What the current application status is
-
----
-
 
 ---
 
@@ -1223,24 +1023,25 @@ The current project focuses on building a unified platform for:
 
 - Government service discovery
 - Requirement guidance
-- Document preparation assistance
-- AI-assisted document pre-checking
-- OCR-based information extraction
-- Document validation
+- User authentication
+- Business information management
 - Application management
+- Approval management
+- Compliance management
+- Notifications
 - Application status tracking
 
-The architecture is designed to allow additional services, AI modules, integrations and accessibility features to be incorporated as the project evolves.
+The architecture is designed to allow additional services, integrations, and accessibility features to be incorporated as the project evolves.
 
 ---
 
 # 22. Conclusion
 
-InduServer aims to make government-service interactions simpler by bringing service discovery, requirement guidance, document assistance, application management and tracking into one platform.
+InduServer aims to make government-service interactions simpler by bringing service discovery, requirement guidance, application management, compliance information, notifications, and tracking into one platform.
 
-By combining a centralized user interface with backend services, structured service information, OCR-based document processing and AI-assisted pre-checking, the platform can help users better understand and prepare for government applications.
+By combining a centralized user interface with a Node.js and Express.js backend, MongoDB database storage, structured service information, and application-management workflows, the platform can help users better understand and manage government applications.
 
-The system is designed as an extensible foundation that can be expanded with additional government services, multilingual capabilities, advanced document intelligence, official API integrations, mobile support and secure cloud deployment.
+The system is designed as an extensible foundation that can be expanded with additional government services, multilingual capabilities, official API integrations, mobile support, and secure cloud deployment.
 
 ---
 

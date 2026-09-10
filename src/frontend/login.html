@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login - InduServe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<script>
+(function () {
+  try {
+    var t = localStorage.getItem('isw_theme');
+    if (t === 'dark') { document.documentElement.setAttribute('data-theme', 'dark'); }
+  } catch (e) { /* storage unavailable */ }
+})();
+</script>
+</head>
+<body class="auth-page" data-page="login">
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="brand">
+      <span class="brand-mark"><img src="assets/induserve-logo.png" alt="Government of India emblem"></span>
+      <span class="brand-text">
+        <span class="brand-title">InduServe</span>
+        <span class="brand-subtitle">Approvals &amp; Compliance</span>
+      </span>
+    </a>
+    <div class="header-actions">
+      <button class="icon-btn theme-toggle-btn" type="button" aria-label="Switch to dark mode" title="Switch to dark mode"></button>
+      <a href="index.html" class="btn btn-outline btn-sm">Back to Home</a>
+    </div>
+  </div>
+</header>
+
+<div class="auth-wrap">
+  <div class="auth-card">
+    <h1>Login</h1>
+    <p class="auth-sub">Sign in to access your dashboard, applications and compliance status.</p>
+
+    <form id="loginForm" novalidate>
+      <div class="form-group">
+        <label for="loginIdentifier">Email / Mobile Number <span class="required-mark">*</span></label>
+        <input type="text" id="loginIdentifier" name="loginIdentifier" placeholder="you@company.com or 10-digit mobile number" required>
+        <div class="form-error">Enter a valid email address or mobile number.</div>
+      </div>
+
+      <div class="form-group">
+        <label for="loginPassword">Password <span class="required-mark">*</span></label>
+        <div class="password-field-wrap">
+          <input type="password" id="loginPassword" name="loginPassword" placeholder="Enter your password" required>
+          <button type="button" class="password-toggle-btn" data-target="loginPassword" aria-label="Show password">Show</button>
+        </div>
+        <div class="form-error">Password must be at least 6 characters.</div>
+      </div>
+
+      <div class="form-actions-row">
+        <div class="checkbox-row">
+          <input type="checkbox" id="rememberMe" name="rememberMe">
+          <label for="rememberMe">Remember me</label>
+        </div>
+        <a href="forgot-password.html" class="btn-link">Forgot Password?</a>
+      </div>
+
+      <div class="form-group" style="margin-top:20px;">
+        <button type="submit" class="btn btn-primary btn-block">Login</button>
+      </div>
+    </form>
+
+    <p class="auth-footer-note">New user? <a href="register.html">Register</a></p>
+    <p class="text-muted text-sm" style="text-align:center;">Prototype login. Any valid-format email/mobile and a 6+ character password will sign you in.</p>
+  </div>
+</div>
+
+<a class="support-bot-link" href="https://t.me/InduSure_bot" target="_blank" rel="noopener noreferrer" aria-label="Chat with InduSure Assistant on Telegram"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10a7 7 0 1114 0 7 7 0 01-14 0z"/><path d="M7 10.5l2 2 4-4.5"/></svg><span class="support-bot-label">Chat with InduSure Assistant</span></a>
+
+<script src="js/script.js"></script>
+</body>
+</html>

@@ -1,10 +1,11 @@
+````markdown
 # InduServer – System Architecture
 
 ## 1. Overview
 
-InduServer is designed as a modular web-based platform that simplifies access to government services by combining service discovery, requirement guidance, document assistance, AI-assisted pre-checking, application management, and application tracking.
+InduServer is designed as a modular web-based platform that simplifies access to government services by combining service discovery, requirement guidance, document and information management, application management, compliance management, notifications, and application tracking.
 
-The architecture separates the user interface, backend services, document-processing components, AI-assisted processing, and data storage so that each component can be developed and improved independently.
+The architecture separates the user interface, backend services, business logic, authentication, and data storage so that each component can be developed and improved independently.
 
 The system is designed around the following flow:
 
@@ -17,37 +18,25 @@ Frontend
   v
 Backend API
   |
-  +-------------------+
-  |                   |
-  v                   v
-Service Module    Application Module
-  |                   |
-  |                   +----------+
-  |                              |
-  v                              v
-Requirements                 Document Module
-                                 |
-                                 v
-                         OCR / AI Processing
-                                 |
-                                 v
-                            Validation
-                                 |
-                                 v
-                         Pre-check Result
-                                 |
-                                 v
-                         Application Module
-                                 |
-                                 v
-                             Database
+  +-------------------+-------------------+
+  |                   |                   |
+  v                   v                   v
+Authentication   Application Module   Business Module
+  |                   |                   |
+  +-------------------+-------------------+
+                      |
+                      v
+           Compliance / Notifications
+                      |
+                      v
+                   Database
 ```
 
 ---
 
 # 2. High-Level Architecture
 
-The proposed InduServer architecture consists of the following major layers:
+The InduServer architecture consists of the following major layers:
 
 ```text
 +----------------------------------------------------------+
@@ -62,31 +51,31 @@ The proposed InduServer architecture consists of the following major layers:
 |                                                          |
 |                 InduServer Web Interface                 |
 |                                                          |
-|  Service Discovery | Requirements | Documents | Status  |
+|  Service Discovery | Requirements | Applications | Status |
 +-------------------------------+--------------------------+
                                 |
                                 v
 +----------------------------------------------------------+
 |                     APPLICATION LAYER                    |
 |                                                          |
-|                      Backend API                         |
+|                  Node.js / Express.js API                |
 |                                                          |
-| Service Management | Application Management              |
-| Document Processing | Validation | Status Management    |
+| Authentication | Applications | Business | Compliance    |
+| Notifications | Status Management | Validation           |
 +-------------------------------+--------------------------+
                                 |
               +-----------------+------------------+
               |                 |                  |
               v                 v                  v
 +--------------------+  +---------------+  +------------------+
-| Document Processing|  |   Database    |  | Service /       |
-|                    |  |               |  | Requirements    |
-| OCR                |  | Users         |  | Data            |
-| Pre-processing     |  | Services      |  |                 |
-| Information        |  | Applications  |  |                 |
-| Extraction         |  | Documents     |  |                 |
-| AI Pre-check       |  | Results       |  |                 |
-| Validation         |  | Status        |  |                 |
+| Authentication &   |  |   Database    |  | Service /        |
+| Middleware         |  |               |  | Requirements     |
+|                    |  | Users         |  | Data             |
+| JWT Validation     |  | Businesses    |  |                  |
+| Input Validation   |  | Applications  |  |                  |
+| Authorization      |  | Approvals     |  |                  |
+|                    |  | Compliance    |  |                  |
+|                    |  | Notifications |  |                  |
 +--------------------+  +---------------+  +------------------+
 ```
 
@@ -104,14 +93,14 @@ It is responsible for providing an easy-to-understand interface through which us
 - Select a required service
 - View service requirements
 - View required documents
-- Upload documents
-- View document pre-check results
+- Provide application information
 - Prepare applications
 - Submit applications
 - Track application status
 - View application history
+- View notifications
 
-The frontend communicates with the backend through APIs.
+The frontend communicates with the backend through HTTP-based APIs.
 
 ### Frontend Flow
 
@@ -131,13 +120,10 @@ Service Details
 Requirements
  |
  v
-Document Upload
+Application Form
  |
  v
-Pre-check Results
- |
- v
-Application
+Application Submission
  |
  v
 Application Dashboard
@@ -156,18 +142,19 @@ It receives requests from the frontend and coordinates communication between the
 
 The backend is responsible for:
 
-- Service information
-- Requirement retrieval
+- User registration and login
+- Authentication and authorization
+- User management
+- Business information management
 - Application creation
 - Application management
-- Document upload handling
-- OCR processing
-- Document validation
-- AI-assisted pre-checking
-- Application status
+- Approval management
+- Compliance information
+- Notifications
+- Application status tracking
 - Database communication
 
-The backend is planned to expose REST-based APIs.
+The backend exposes REST-based APIs using Node.js and Express.js.
 
 ### Backend Flow
 
@@ -177,16 +164,16 @@ Frontend Request
        v
 Backend API
        |
-       +----------------------+
-       |          |           |
-       v          v           v
-Service      Document     Application
-Module       Module       Module
-       |          |           |
-       +----------+-----------+
-                  |
-                  v
-               Database
+       +----------------------+----------------------+
+       |                      |                      |
+       v                      v                      v
+Authentication          Application             Business /
+Middleware              Module                  Compliance Module
+       |                      |                      |
+       +----------------------+----------------------+
+                              |
+                              v
+                           MongoDB
 ```
 
 ---
@@ -261,259 +248,90 @@ Required Documents    Other Requirements
         User Preparation
 ```
 
-The module is intended to make requirements easier to understand before document submission.
+The module is intended to make requirements easier to understand before application submission.
 
 ---
 
-# 7. Document Processing Module
+# 7. User Authentication and Authorization
 
-The Document Processing Module handles documents uploaded by the user.
+The authentication module manages secure access to the platform.
 
-The module acts as a pipeline in which documents pass through multiple processing stages.
+It supports user registration, login, protected routes, and authorization for restricted functionality.
 
-```text
-Document Upload
-       |
-       v
-File Validation
-       |
-       v
-Document Pre-processing
-       |
-       v
-OCR
-       |
-       v
-Information Extraction
-       |
-       v
-Document Validation
-       |
-       v
-AI-Assisted Pre-check
-       |
-       v
-Result Generation
-```
-
----
-
-# 8. Document Upload
-
-The document upload component accepts documents provided by the user.
-
-Before processing, the system can perform basic checks such as:
-
-- File availability
-- File type
-- File size
-- Basic file integrity
-- Supported document format
-
-Invalid or unsupported files should be reported clearly to the user.
-
-### Upload Flow
+### Authentication Flow
 
 ```text
 User
  |
  v
-Select Document
+Register / Login
  |
  v
-Upload
+Backend API
  |
  v
-File Validation
- |
- +-------- Invalid --------> Error Message
+Credential Validation
  |
  v
-Valid Document
+JWT Generation
  |
  v
-Processing
+Authenticated Session
+ |
+ v
+Protected Application Features
+```
+
+### Responsibilities
+
+- User registration
+- User login
+- Password protection
+- JWT-based authentication
+- Protected routes
+- Authorization checks
+- Input validation
+
+---
+
+# 8. Business Information Management
+
+The Business Information Management Module allows users to maintain relevant business or organization-related information.
+
+This information can be associated with user accounts and applications.
+
+### Responsibilities
+
+- Create business information
+- Update business information
+- Retrieve business information
+- Associate business information with a user
+- Associate relevant business information with applications
+
+### Business Information Flow
+
+```text
+User
+ |
+ v
+Provide Business Information
+ |
+ v
+Backend API
+ |
+ v
+Business Controller
+ |
+ v
+Business Model
+ |
+ v
+MongoDB
 ```
 
 ---
 
-# 9. OCR Processing
-
-Optical Character Recognition (OCR) is used to extract text from supported uploaded documents.
-
-The OCR component converts document images into machine-readable text.
-
-### OCR Architecture
-
-```text
-Document Image
-      |
-      v
-Image Pre-processing
-      |
-      v
-OCR Engine
-      |
-      v
-Extracted Text
-      |
-      v
-Information Parser
-      |
-      v
-Structured Fields
-```
-
-The extracted text can contain information such as:
-
-- Names
-- Dates
-- Identification numbers
-- Addresses
-- Document numbers
-- Other relevant fields
-
-The exact fields depend on the type of government document being processed.
-
----
-
-# 10. Information Extraction
-
-After OCR processing, the raw text needs to be converted into useful structured information.
-
-For example:
-
-```text
-Raw OCR Text
-     |
-     v
-Text Cleaning
-     |
-     v
-Field Identification
-     |
-     v
-Structured Data
-```
-
-A structured representation may contain fields such as:
-
-```text
-Name
-Date
-Document Number
-Address
-Issue Date
-Expiry Date
-Other Required Information
-```
-
-The extracted information can then be compared with the requirements of the selected service.
-
----
-
-# 11. AI-Assisted Document Pre-Check
-
-The AI-assisted pre-check module provides preliminary analysis of uploaded documents.
-
-The purpose of this module is to help users identify potential issues before formal application submission.
-
-The pre-check can use extracted document information and other document-level signals to identify possible problems.
-
-### Pre-check Flow
-
-```text
-Uploaded Document
-       |
-       v
-Pre-processing
-       |
-       v
-OCR / Information Extraction
-       |
-       v
-Required Field Detection
-       |
-       v
-Consistency / Validation Checks
-       |
-       v
-AI-Assisted Analysis
-       |
-       v
-Pre-check Result
-```
-
-Possible results include:
-
-```text
-PASS
-REVIEW REQUIRED
-MISSING INFORMATION
-INVALID / INCOMPLETE
-```
-
-The AI-assisted result is intended to be a preliminary assistance mechanism.
-
-It should not be treated as an official government verification or approval decision.
-
----
-
-# 12. Document Validation
-
-The validation layer checks whether the information extracted from the uploaded document satisfies basic requirements.
-
-Validation may include:
-
-- Required field checks
-- Format checks
-- Date checks
-- Completeness checks
-- Basic consistency checks
-- Requirement comparison
-
-### Validation Flow
-
-```text
-Extracted Information
-       |
-       v
-Required Field Check
-       |
-       v
-Format Check
-       |
-       v
-Consistency Check
-       |
-       v
-Requirement Comparison
-       |
-       v
-Validation Result
-```
-
-The system can provide understandable feedback instead of returning only a technical error.
-
-Example:
-
-```text
-Document Check Result
-
-Status: REVIEW REQUIRED
-
-Possible Issues:
-- Required information may be missing
-- Document quality may be insufficient
-- Additional supporting information may be required
-
-Action:
-Review the document and provide the required information.
-```
-
----
-
-# 13. Application Management Module
+# 9. Application Management Module
 
 The Application Management Module manages the lifecycle of an application.
 
@@ -521,8 +339,8 @@ It is responsible for:
 
 - Creating applications
 - Storing application information
-- Associating applications with services
-- Associating documents with applications
+- Associating applications with users
+- Associating applications with business information
 - Maintaining application status
 - Maintaining application history
 - Retrieving application information
@@ -531,9 +349,6 @@ It is responsible for:
 
 ```text
 DRAFT
-  |
-  v
-DOCUMENT CHECK
   |
   v
 SUBMITTED
@@ -549,7 +364,115 @@ APPROVED         REJECTED
 
 ---
 
-# 14. Application Status Tracking
+# 10. Approval Management
+
+The Approval Management Module allows administrators or authorized users to review and process submitted applications.
+
+### Responsibilities
+
+- View submitted applications
+- Review application details
+- Update application status
+- Approve applications
+- Reject applications
+- Maintain approval-related records
+- Provide status updates to users
+
+### Approval Flow
+
+```text
+Submitted Application
+          |
+          v
+Application Review
+          |
+          +------------------+
+          |                  |
+          v                  v
+      Approved            Rejected
+          |                  |
+          +--------+---------+
+                   |
+                   v
+          Status Update Saved
+                   |
+                   v
+           User Is Notified
+```
+
+---
+
+# 11. Compliance Management Module
+
+The Compliance Management Module stores and manages compliance-related information associated with users, businesses, or applications.
+
+### Responsibilities
+
+- Store compliance information
+- Track compliance requirements
+- Associate compliance records with applications
+- Display relevant compliance information
+- Support future compliance reminders and updates
+
+### Compliance Flow
+
+```text
+User / Business
+       |
+       v
+Compliance Information
+       |
+       v
+Backend API
+       |
+       v
+Compliance Controller
+       |
+       v
+Compliance Model
+       |
+       v
+MongoDB
+```
+
+---
+
+# 12. Notification Module
+
+The Notification Module communicates important updates to users.
+
+Notifications can be generated for application events and compliance-related updates.
+
+### Notification Events
+
+- Application submission
+- Application status changes
+- Approval or rejection
+- Required actions
+- Compliance-related updates
+- Important system updates
+
+### Notification Flow
+
+```text
+Application Event
+       |
+       v
+Backend API
+       |
+       v
+Notification Module
+       |
+       v
+Notification Stored
+       |
+       v
+User Dashboard
+```
+
+---
+
+# 13. Application Status Tracking
 
 Users should be able to track their applications through a centralized dashboard.
 
@@ -557,12 +480,6 @@ A status history can be represented as:
 
 ```text
 Application Created
-        |
-        v
-Documents Prepared
-        |
-        v
-Pre-check Completed
         |
         v
 Application Submitted
@@ -588,19 +505,22 @@ The dashboard can display:
 
 ---
 
-# 15. Database Layer
+# 14. Database Layer
 
 The database provides persistent storage for InduServer.
 
-The database can store structured information related to:
+MongoDB is used with Mongoose models to manage structured application data.
+
+The database can store information related to:
 
 - Users
+- Business information
 - Government services
 - Service requirements
 - Applications
-- Documents
-- Extracted information
-- Validation results
+- Approvals
+- Compliance information
+- Notifications
 - Application status
 - Status history
 
@@ -612,26 +532,26 @@ USER
  +--------------------+
  |                    |
  v                    v
-APPLICATION        DOCUMENT
- |
- +--------------------+
- |
- +-------- SERVICE
- |
- +-------- VALIDATION RESULT
- |
- +-------- STATUS HISTORY
+BUSINESS          APPLICATION
+                       |
+                       +-------- APPROVAL
+                       |
+                       +-------- COMPLIANCE
+                       |
+                       +-------- NOTIFICATIONS
+                       |
+                       +-------- STATUS HISTORY
 ```
 
 ---
 
-# 16. Database Entities
+# 15. Database Entities
 
-The planned database can contain the following major entities.
+The database can contain the following major entities.
 
 ## User
 
-Stores information required to associate applications with users.
+Stores information required to authenticate users and associate applications with them.
 
 Possible attributes:
 
@@ -639,7 +559,26 @@ Possible attributes:
 user_id
 name
 email
+password
 phone
+created_at
+```
+
+---
+
+## Business
+
+Stores business or organization-related information associated with a user.
+
+Possible attributes:
+
+```text
+business_id
+user_id
+business_name
+business_type
+address
+contact_information
 created_at
 ```
 
@@ -687,6 +626,7 @@ Possible attributes:
 ```text
 application_id
 user_id
+business_id
 service_id
 application_date
 status
@@ -695,34 +635,52 @@ updated_at
 
 ---
 
-## Document
+## Approval
 
-Stores information about documents associated with an application.
+Stores approval-related information for an application.
 
 Possible attributes:
 
 ```text
-document_id
+approval_id
 application_id
-document_type
-file_name
-upload_date
-processing_status
+status
+reviewed_by
+remarks
+updated_at
 ```
 
 ---
 
-## Validation Result
+## Compliance
 
-Stores results produced by document validation or AI-assisted pre-checking.
+Stores compliance-related information.
 
 Possible attributes:
 
 ```text
-result_id
-document_id
-validation_status
-issues_detected
+compliance_id
+application_id
+requirement
+status
+due_date
+remarks
+```
+
+---
+
+## Notification
+
+Stores notifications sent to users.
+
+Possible attributes:
+
+```text
+notification_id
+user_id
+message
+type
+is_read
 created_at
 ```
 
@@ -745,11 +703,18 @@ remarks
 
 ---
 
-# 17. Data Relationships
+# 16. Data Relationships
 
 The primary relationships can be represented as:
 
 ```text
+USER
+ |
+ | 1:N
+ v
+BUSINESS
+
+
 USER
  |
  | 1:N
@@ -767,13 +732,16 @@ REQUIREMENT
 
 APPLICATION
  |
- | 1:N
+ | 1:1
  v
-DOCUMENT
+APPROVAL
+
+
+APPLICATION
  |
  | 1:N
  v
-VALIDATION RESULT
+COMPLIANCE
 
 
 APPLICATION
@@ -781,13 +749,20 @@ APPLICATION
  | 1:N
  v
 STATUS HISTORY
+
+
+USER
+ |
+ | 1:N
+ v
+NOTIFICATION
 ```
 
-This structure allows an application to be associated with a selected service, multiple documents, validation results, and multiple status updates.
+This structure allows an application to be associated with a selected service, business information, approval records, compliance details, notifications, and multiple status updates.
 
 ---
 
-# 18. End-to-End Data Flow
+# 17. End-to-End Data Flow
 
 The complete data flow of InduServer is:
 
@@ -814,44 +789,24 @@ The complete data flow of InduServer is:
                                       |
                                       v
                               +---------------+
-                              |    Document   |
-                              |    Upload     |
-                              +---------------+
-                                      |
-                                      v
-                              +---------------+
-                              | Pre-processing|
-                              +---------------+
-                                      |
-                                      v
-                              +---------------+
-                              |      OCR      |
-                              +---------------+
-                                      |
-                                      v
-                              +---------------+
+                              | Business      |
                               | Information   |
-                              | Extraction    |
                               +---------------+
                                       |
                                       v
                               +---------------+
-                              |  Validation   |
+                              | Approval /    |
+                              | Compliance    |
                               +---------------+
                                       |
                                       v
                               +---------------+
-                              | AI Pre-check  |
+                              | Notifications |
                               +---------------+
                                       |
                                       v
                               +---------------+
-                              | Result        |
-                              +---------------+
-                                      |
-                                      v
-                              +---------------+
-                              |   Database    |
+                              |   MongoDB     |
                               +---------------+
                                       |
                                       v
@@ -862,7 +817,7 @@ The complete data flow of InduServer is:
 
 ---
 
-# 19. API Communication
+# 18. API Communication
 
 The frontend and backend communicate through HTTP-based API requests.
 
@@ -885,26 +840,23 @@ Service Information
 Frontend
 ```
 
-For document processing:
+For application management:
 
 ```text
 Frontend
    |
-   | POST document
+   | POST /applications
    v
 Backend
    |
    v
-Document Processor
+Application Controller
    |
    v
-OCR / AI / Validation
+Application Model
    |
    v
-Result
-   |
-   v
-Backend
+MongoDB
    |
    v
 Frontend
@@ -931,19 +883,19 @@ Frontend
 
 ---
 
-# 20. Security Considerations
+# 19. Security Considerations
 
-Government-service workflows may involve sensitive user and document information.
+Government-service workflows may involve sensitive user and business information.
 
 The architecture should therefore incorporate security practices throughout the system.
 
 Important considerations include:
 
 - Authentication and authorization
+- JWT-based protected routes
 - Secure API endpoints
 - Input validation
-- File validation
-- Secure document handling
+- Password protection
 - Database access controls
 - HTTPS in production
 - Secure session management
@@ -967,21 +919,19 @@ These should be excluded through `.gitignore`.
 
 ---
 
-# 21. Privacy Considerations
+# 20. Privacy Considerations
 
-Documents submitted through the platform may contain personal information.
+The platform may store personal, business, and application-related information.
 
 The system should therefore follow data-minimization principles and avoid storing information that is not necessary for the intended workflow.
 
-Where document storage is required, appropriate access controls and secure storage should be used.
+Where personal information is stored, appropriate access controls and secure database practices should be used.
 
-Temporary files generated during processing should be removed when they are no longer required.
-
-The AI-assisted document pre-check should also clearly communicate that its result is preliminary and does not replace official verification.
+Users should only be able to access their own applications and related records unless they have authorized administrative access.
 
 ---
 
-# 22. Scalability
+# 21. Scalability
 
 The modular architecture allows InduServer to scale as additional government services and users are introduced.
 
@@ -991,19 +941,17 @@ Potential improvements include:
 - Load balancing
 - Database indexing
 - Caching
-- Background processing for large documents
-- Separate AI processing services
 - Containerized deployment
 - Cloud infrastructure
 - Centralized logging
 - Monitoring
-- Queue-based document processing
+- Queue-based notification processing
 
 The service module can also be extended with additional government services without requiring a complete redesign of the platform.
 
 ---
 
-# 23. Extensibility
+# 22. Extensibility
 
 InduServer is designed so that new modules can be added independently.
 
@@ -1015,26 +963,25 @@ For example:
         +---------------+---------------+
         |               |               |
         v               v               v
- Service Module    Document Module   Application Module
+ Service Module   Compliance Module  Application Module
         |               |               |
         v               v               v
- More Services     More AI Models    More Integrations
+ More Services   More Requirements  More Integrations
 ```
 
 Future modules could include:
 
 - Multilingual assistance
 - Voice assistance
-- Advanced document classification
 - Personalized service recommendations
-- Notification services
+- Email and SMS notifications
 - Analytics
 - Mobile application
 - Authorized government API integrations
 
 ---
 
-# 24. Deployment Architecture
+# 23. Deployment Architecture
 
 A possible production deployment can follow:
 
@@ -1054,14 +1001,13 @@ A possible production deployment can follow:
                         v
                 +---------------+
                 | Backend API   |
+                | Node / Express|
                 +---------------+
-                   /     |     \
-                  /      |      \
-                 v       v       v
-          +--------+ +--------+ +-------------+
-          |Database| |Document| | AI / OCR    |
-          |        | |Storage | | Processing  |
-          +--------+ +--------+ +-------------+
+                        |
+                        v
+                +---------------+
+                |    MongoDB    |
+                +---------------+
 ```
 
 For the prototype, the components can initially run locally or on a single development server.
@@ -1070,35 +1016,17 @@ The architecture can later be adapted to cloud deployment.
 
 ---
 
-# 25. Error Handling
+# 24. Error Handling
 
 Each major component should provide meaningful error handling.
 
-### Document Upload Errors
+### Authentication Errors
 
 ```text
-Invalid File
-Unsupported Format
-File Too Large
-Corrupted File
-```
-
-### OCR Errors
-
-```text
-Unable to Read Document
-Low Image Quality
-No Text Detected
-Unsupported Document
-```
-
-### Validation Errors
-
-```text
-Required Field Missing
-Invalid Format
-Inconsistent Information
-Document Incomplete
+Invalid Credentials
+Unauthorized Access
+Expired Token
+Invalid Token
 ```
 
 ### Application Errors
@@ -1110,11 +1038,20 @@ Status Retrieval Failed
 Database Error
 ```
 
+### Validation Errors
+
+```text
+Required Field Missing
+Invalid Input Format
+Incomplete Information
+Invalid Request
+```
+
 Errors should be converted into understandable messages for users while keeping detailed technical logs for developers.
 
 ---
 
-# 26. Monitoring and Logging
+# 25. Monitoring and Logging
 
 For development and production environments, the system should maintain useful logs for debugging and monitoring.
 
@@ -1122,14 +1059,12 @@ Possible log information includes:
 
 ```text
 Request Received
-Document Uploaded
-OCR Started
-OCR Completed
-Validation Started
-Validation Completed
+User Registered
+User Logged In
 Application Created
 Application Submitted
 Status Updated
+Notification Created
 Error Occurred
 ```
 
@@ -1137,7 +1072,7 @@ Logs should not expose sensitive personal information unnecessarily.
 
 ---
 
-# 27. Testing Architecture
+# 26. Testing Architecture
 
 Testing should be performed at multiple levels.
 
@@ -1156,21 +1091,23 @@ Testing should be performed at multiple levels.
 
 Important test areas include:
 
+- User registration and login
+- Authentication middleware
 - Service retrieval
 - Requirement retrieval
-- Document upload
-- OCR extraction
-- Validation
-- AI-assisted pre-check
+- Business information management
 - Application creation
 - Application submission
+- Approval updates
+- Compliance information
+- Notification functionality
 - Status tracking
 - Database operations
 - Frontend/backend communication
 
 ---
 
-# 28. Complete System Workflow
+# 27. Complete System Workflow
 
 The complete InduServer workflow can be summarized as:
 
@@ -1194,43 +1131,6 @@ The complete InduServer workflow can be summarized as:
                           |
                           v
                 +-------------------+
-                | Document Upload   |
-                +-------------------+
-                          |
-                          v
-                +-------------------+
-                | Document          |
-                | Pre-processing    |
-                +-------------------+
-                          |
-                          v
-                +-------------------+
-                | OCR / Extraction  |
-                +-------------------+
-                          |
-                          v
-                +-------------------+
-                | Validation        |
-                +-------------------+
-                          |
-                          v
-                +-------------------+
-                | AI-Assisted       |
-                | Pre-check         |
-                +-------------------+
-                          |
-                    +-----+-----+
-                    |           |
-                    v           v
-                  ISSUE       PASS
-                    |           |
-                    v           |
-             User Correction    |
-                    |           |
-                    +-----+-----+
-                          |
-                          v
-                +-------------------+
                 | Application       |
                 | Preparation       |
                 +-------------------+
@@ -1244,18 +1144,26 @@ The complete InduServer workflow can be summarized as:
                           v
                 +-------------------+
                 | Application       |
-                | Tracking          |
+                | Review            |
                 +-------------------+
+                          |
+                    +-----+-----+
+                    |           |
+                    v           v
+                APPROVED     REJECTED
+                    |           |
+                    +-----+-----+
                           |
                           v
                 +-------------------+
-                | Final Status      |
+                | Notifications &   |
+                | Status Tracking   |
                 +-------------------+
 ```
 
 ---
 
-# 29. Design Principles
+# 28. Design Principles
 
 The InduServer architecture follows these principles:
 
@@ -1269,11 +1177,11 @@ The user should be able to complete the workflow without needing to understand t
 
 ### Extensibility
 
-New services, document types and AI capabilities should be addable without major architectural changes.
+New services, compliance requirements, integrations, and notification channels should be addable without major architectural changes.
 
 ### Security
 
-User and document information should be handled securely.
+User, business, and application information should be handled securely.
 
 ### Maintainability
 
@@ -1283,13 +1191,9 @@ The codebase should be organized so that individual modules can be modified and 
 
 The system should be capable of expanding from a prototype to a larger service platform.
 
-### Explainability
-
-AI-assisted results should provide understandable feedback rather than unexplained decisions.
-
 ---
 
-# 30. Architecture Summary
+# 29. Architecture Summary
 
 InduServer follows a layered and modular architecture:
 
@@ -1306,28 +1210,22 @@ InduServer follows a layered and modular architecture:
                       |
                       v
 +------------------------------------------------+
-|                 BACKEND API                   |
-|       Business Logic / API Management         |
+|                 BACKEND API                    |
+|     Node.js / Express.js / API Management      |
 +------------------------------------------------+
           |             |              |
           v             v              v
 +-------------+ +---------------+ +-------------+
-|   Service   | |   Document    | | Application |
-|   Module    | |   Processing   | |   Module    |
+| Authentication| | Compliance / | | Application |
+| & Users       | | Notifications | |   Module    |
 +-------------+ +---------------+ +-------------+
-                        |
-                        v
+                      |
+                      v
                 +---------------+
-                | OCR / AI /    |
-                | Validation    |
+                |    MongoDB    |
                 +---------------+
-                        |
-                        v
-                +---------------+
-                |   DATABASE    |
-                +---------------+
-                        |
-                        v
+                      |
+                      v
                 +---------------+
                 | User Dashboard|
                 +---------------+
@@ -1335,4 +1233,5 @@ InduServer follows a layered and modular architecture:
 
 The architecture provides a foundation for developing InduServer as a unified government-service assistance platform.
 
-The prototype can begin with the core service discovery, requirement guidance, document processing and application management components and progressively incorporate advanced AI capabilities, additional services, integrations and deployment infrastructure.
+The prototype can begin with service discovery, requirement guidance, user authentication, application management, compliance management, notifications, and status tracking. It can later incorporate additional services, integrations, accessibility features, and cloud deployment infrastructure.
+````

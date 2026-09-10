@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apply for Approval - InduServe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<script>
+(function () {
+  try {
+    var t = localStorage.getItem('isw_theme');
+    if (t === 'dark') { document.documentElement.setAttribute('data-theme', 'dark'); }
+  } catch (e) { /* storage unavailable */ }
+})();
+</script>
+</head>
+<body data-page="apply">
+
+<div class="app-shell">
+  <div class="sidebar-backdrop"></div>
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <span class="brand-mark"><img src="assets/induserve-logo.png" alt="Government of India emblem"></span>
+      <span class="brand-text">
+        <span class="brand-title">InduServe</span>
+        <span class="brand-subtitle">Applicant Portal</span>
+      </span>
+    </div>
+    <ul class="sidebar-nav">
+      <li><a href="dashboard.html"><span class="nav-icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2.5" y="2.5" width="6" height="6" rx="1"/><rect x="11.5" y="2.5" width="6" height="6" rx="1"/><rect x="2.5" y="11.5" width="6" height="6" rx="1"/><rect x="11.5" y="11.5" width="6" height="6" rx="1"/></svg></span> Dashboard</a></li>
+      <li><a href="approvals.html" class="active"><span class="nav-icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 2.5h6l3 3v12h-9z"/><path d="M8 10.5l1.6 1.6L13 8.5"/></svg></span> Industrial Approvals</a></li>
+      <li><a href="tracking.html"><span class="nav-icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="6.5" width="15" height="10" rx="1.2"/><path d="M7.5 6.5V5a2 2 0 012-2h1a2 2 0 012 2v1.5"/></svg></span> My Applications</a></li>
+      <li><a href="compliance.html"><span class="nav-icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2.5l6.5 2.6v4.6c0 4.6-2.8 7.6-6.5 8.8-3.7-1.2-6.5-4.2-6.5-8.8V5.1z"/><path d="M7.2 10l1.9 1.9 3.7-3.7"/></svg></span> Compliance</a></li>
+      <li><a href="schemes.html"><span class="nav-icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11 2.5H5a2.5 2.5 0 00-2.5 2.5v6L11 19.5l6.5-6.5z"/><circle cx="7.2" cy="7.2" r="1.1" fill="currentColor" stroke="none"/></svg></span> Government Schemes</a></li>
+      <li><a href="apply.html"><span class="nav-icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 5.5a1 1 0 011-1h3.6l1.6 1.6h7.3a1 1 0 011 1v8a1 1 0 01-1 1h-12.5a1 1 0 01-1-1z"/></svg></span> Documents</a></li>
+      <li><a href="notifications.html"><span class="nav-icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3a3.6 3.6 0 00-3.6 3.6v2.6L4.8 12.8h10.4L13.6 9.2V6.6A3.6 3.6 0 0010 3z"/><path d="M8.3 15.5a1.7 1.7 0 003.4 0"/></svg></span> Notifications</a></li>
+      <li><a href="profile.html"><span class="nav-icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="6.3" r="3.1"/><path d="M3.3 17c1-3.6 4-5.3 6.7-5.3s5.7 1.7 6.7 5.3"/></svg></span> Profile</a></li>
+    </ul>
+    <div class="sidebar-footer">
+      <a href="#help">Help &amp; Support</a>
+      <a href="index.html" data-action="logout">Logout</a>
+    </div>
+  </aside>
+
+  <div class="main-area">
+    <div class="topbar">
+      <button class="sidebar-toggle" aria-label="Toggle sidebar"><span></span></button>
+      <h1 class="topbar-title">Apply for Approval</h1>
+      <div class="topbar-search">
+        <input type="search" placeholder="Search applications, approvals...">
+      </div>
+      <div class="topbar-right">
+        <button class="icon-btn theme-toggle-btn" type="button" aria-label="Switch to dark mode" title="Switch to dark mode"></button>
+        <button class="icon-btn" title="Notifications" onclick="window.location.href='notifications.html'">N<span class="dot"></span></button>
+        <div class="user-chip">
+          <span class="user-avatar" data-user-initial>A</span>
+          <span data-user-name>Amit Sharma</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="content">
+      <ul class="breadcrumb">
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="approvals.html">Industrial Approvals</a></li>
+        <li>Apply for Approval</li>
+      </ul>
+
+      <div class="page-heading">
+        <div>
+          <h1>Apply for Approval</h1>
+          <p class="page-sub">Applying for: <strong id="applyApprovalName">Factory Licence</strong></p>
+        </div>
+      </div>
+
+      <ol class="steps">
+        <li data-step="1"><span class="step-label">Business Info</span></li>
+        <li data-step="2"><span class="step-label">Applicant</span></li>
+        <li data-step="3"><span class="step-label">Documents</span></li>
+        <li data-step="4"><span class="step-label">Review</span></li>
+        <li data-step="5"><span class="step-label">Submit</span></li>
+      </ol>
+
+      <form id="applicationForm" novalidate>
+        <div class="panel">
+          <div class="panel-body">
+
+            <!-- STEP 1: Business Information -->
+            <div class="wizard-panel" data-step="1">
+              <h2>Business Information</h2>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="bizName">Business / Unit Name <span class="required-mark">*</span></label>
+                  <input type="text" id="bizName" placeholder="Enter registered business name" required>
+                  <div class="form-error">This field is required.</div>
+                </div>
+                <div class="form-group">
+                  <label for="bizType">Type of Organisation <span class="required-mark">*</span></label>
+                  <select id="bizType" required>
+                    <option value="">Select type</option>
+                    <option>Sole Proprietorship</option>
+                    <option>Partnership Firm</option>
+                    <option>Private Limited Company</option>
+                    <option>Public Limited Company</option>
+                    <option>LLP</option>
+                  </select>
+                  <div class="form-error">This field is required.</div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="bizIndustry">Industry Sector <span class="required-mark">*</span></label>
+                  <select id="bizIndustry" required>
+                    <option value="">Select industry</option>
+                    <option>Manufacturing</option>
+                    <option>Food Processing</option>
+                    <option>Textiles</option>
+                    <option>Chemicals</option>
+                    <option>Engineering</option>
+                    <option>Other</option>
+                  </select>
+                  <div class="form-error">This field is required.</div>
+                </div>
+                <div class="form-group">
+                  <label for="bizState">State <span class="required-mark">*</span></label>
+                  <select id="bizState" required>
+                    <option value="">Select state</option>
+                    <option>Maharashtra</option>
+                    <option>Gujarat</option>
+                    <option>Karnataka</option>
+                    <option>Tamil Nadu</option>
+                    <option>Delhi</option>
+                  </select>
+                  <div class="form-error">This field is required.</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="bizAddress">Business Address <span class="required-mark">*</span></label>
+                <textarea id="bizAddress" rows="3" placeholder="Enter complete business address" required></textarea>
+                <div class="form-error">This field is required.</div>
+              </div>
+              <div class="form-actions-row" style="justify-content:flex-end;">
+                <button type="button" class="btn btn-primary" data-action="next-step">Next: Applicant</button>
+              </div>
+            </div>
+
+            <!-- STEP 2: Applicant Information -->
+            <div class="wizard-panel" data-step="2">
+              <h2>Applicant Information</h2>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="appName">Applicant Name <span class="required-mark">*</span></label>
+                  <input type="text" id="appName" placeholder="Enter applicant's full name" required>
+                  <div class="form-error">This field is required.</div>
+                </div>
+                <div class="form-group">
+                  <label for="appDesignation">Designation <span class="required-mark">*</span></label>
+                  <input type="text" id="appDesignation" placeholder="e.g. Proprietor, Director" required>
+                  <div class="form-error">This field is required.</div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="appEmail">Email <span class="required-mark">*</span></label>
+                  <input type="email" id="appEmail" placeholder="applicant@company.com" required>
+                  <div class="form-error">This field is required.</div>
+                </div>
+                <div class="form-group">
+                  <label for="appMobile">Mobile Number <span class="required-mark">*</span></label>
+                  <input type="tel" id="appMobile" placeholder="10-digit mobile number" required>
+                  <div class="form-error">This field is required.</div>
+                </div>
+              </div>
+              <div class="form-actions-row">
+                <button type="button" class="btn btn-outline" data-action="prev-step">Previous</button>
+                <button type="button" class="btn btn-primary" data-action="next-step">Next: Documents</button>
+              </div>
+            </div>
+
+            <!-- STEP 3: Documents -->
+            <div class="wizard-panel" data-step="3">
+              <h2>Documents</h2>
+              <p class="text-muted">Upload the documents listed below. Files are not uploaded to a server in this prototype; selected file names are displayed for reference only.</p>
+
+              <div class="table-wrap">
+                <table class="data-table">
+                  <thead>
+                    <tr><th>Required Document</th><th>Status</th><th>Upload</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr id="docRow1">
+                      <td class="cell-primary">Proof of Identity</td>
+                      <td class="doc-upload-status"><span class="badge badge-pending">Not uploaded</span></td>
+                      <td><input type="file" class="doc-upload-input" data-doc-key="identity" data-row-id="docRow1"></td>
+                    </tr>
+                    <tr id="docRow2">
+                      <td class="cell-primary">Proof of Address</td>
+                      <td class="doc-upload-status"><span class="badge badge-pending">Not uploaded</span></td>
+                      <td><input type="file" class="doc-upload-input" data-doc-key="address" data-row-id="docRow2"></td>
+                    </tr>
+                    <tr id="docRow3">
+                      <td class="cell-primary">Site Plan / Layout</td>
+                      <td class="doc-upload-status"><span class="badge badge-pending">Not uploaded</span></td>
+                      <td><input type="file" class="doc-upload-input" data-doc-key="sitePlan" data-row-id="docRow3"></td>
+                    </tr>
+                    <tr id="docRow4">
+                      <td class="cell-primary">Project Report</td>
+                      <td class="doc-upload-status"><span class="badge badge-pending">Not uploaded</span></td>
+                      <td><input type="file" class="doc-upload-input" data-doc-key="projectReport" data-row-id="docRow4"></td>
+                    </tr>
+                    <tr id="docRow5">
+                      <td class="cell-primary">Passport-size Photograph</td>
+                      <td class="doc-upload-status"><span class="badge badge-pending">Not uploaded</span></td>
+                      <td><input type="file" class="doc-upload-input" data-doc-key="photo" data-row-id="docRow5"></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="form-actions-row" style="margin-top:20px;">
+                <button type="button" class="btn btn-outline" data-action="prev-step">Previous</button>
+                <button type="button" class="btn btn-primary" data-action="next-step">Next: Review</button>
+              </div>
+            </div>
+
+            <!-- STEP 4: Review -->
+            <div class="wizard-panel" data-step="4">
+              <h2>Review Your Application</h2>
+              <p class="text-muted">Please review the details below before submitting your application.</p>
+              <div id="reviewSummary"></div>
+              <div class="form-actions-row" style="margin-top:20px;">
+                <button type="button" class="btn btn-outline" data-action="prev-step">Previous</button>
+                <button type="submit" class="btn btn-primary">Submit Application</button>
+              </div>
+            </div>
+
+            <!-- STEP 5: Submit / Confirmation -->
+            <div class="wizard-panel" data-step="5">
+              <div class="auth-success" style="padding:20px 0;">
+                <div class="success-icon">&#10003;</div>
+                <h2>Application submitted successfully.</h2>
+                <p class="text-muted">Your application has been received. Please save your application ID for future reference and tracking.</p>
+                <p style="font-size:20px; font-weight:700; color:var(--color-navy); margin:14px 0;" id="generatedApplicationId">IND-2026-000000</p>
+                <div style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
+                  <a href="tracking.html" class="btn btn-primary" id="trackNewApplicationLink">Track Application</a>
+                  <a href="dashboard.html" class="btn btn-outline">Go to Dashboard</a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </form>
+
+      <p class="proto-note">Prototype — Data shown for demonstration purposes. No documents are uploaded to a server.</p>
+    </div>
+  </div>
+</div>
+
+<a class="support-bot-link" href="https://t.me/InduSure_bot" target="_blank" rel="noopener noreferrer" aria-label="Chat with InduSure Assistant on Telegram"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10a7 7 0 1114 0 7 7 0 01-14 0z"/><path d="M7 10.5l2 2 4-4.5"/></svg><span class="support-bot-label">Chat with InduSure Assistant</span></a>
+
+<script src="js/script.js"></script>
+</body>
+</html>

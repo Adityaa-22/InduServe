@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Register - InduServe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<script>
+(function () {
+  try {
+    var t = localStorage.getItem('isw_theme');
+    if (t === 'dark') { document.documentElement.setAttribute('data-theme', 'dark'); }
+  } catch (e) { /* storage unavailable */ }
+})();
+</script>
+</head>
+<body class="auth-page" data-page="register">
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="brand">
+      <span class="brand-mark"><img src="assets/induserve-logo.png" alt="Government of India emblem"></span>
+      <span class="brand-text">
+        <span class="brand-title">InduServe</span>
+        <span class="brand-subtitle">Approvals &amp; Compliance</span>
+      </span>
+    </a>
+    <div class="header-actions">
+      <button class="icon-btn theme-toggle-btn" type="button" aria-label="Switch to dark mode" title="Switch to dark mode"></button>
+      <a href="index.html" class="btn btn-outline btn-sm">Back to Home</a>
+    </div>
+  </div>
+</header>
+
+<div class="auth-wrap">
+  <div class="auth-card" style="max-width:480px;">
+    <h1>Register</h1>
+    <p class="auth-sub">Create an account to apply for approvals and manage compliance for your organisation.</p>
+
+    <form id="registerForm" novalidate>
+      <div class="form-group">
+        <label for="regFullName">Full Name <span class="required-mark">*</span></label>
+        <input type="text" id="regFullName" name="regFullName" placeholder="Enter your full name" required>
+        <div class="form-error">Enter your full name.</div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="regEmail">Email <span class="required-mark">*</span></label>
+          <input type="email" id="regEmail" name="regEmail" placeholder="you@company.com" required>
+          <div class="form-error">Enter a valid email address.</div>
+        </div>
+        <div class="form-group">
+          <label for="regMobile">Mobile Number <span class="required-mark">*</span></label>
+          <input type="tel" id="regMobile" name="regMobile" placeholder="10-digit mobile number" required>
+          <div class="form-error">Enter a valid 10-digit mobile number.</div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="regPassword">Password <span class="required-mark">*</span></label>
+          <div class="password-field-wrap">
+            <input type="password" id="regPassword" name="regPassword" placeholder="Minimum 6 characters" required>
+            <button type="button" class="password-toggle-btn" data-target="regPassword" aria-label="Show password">Show</button>
+          </div>
+          <div class="form-error">Password must be at least 6 characters.</div>
+        </div>
+        <div class="form-group">
+          <label for="regConfirmPassword">Confirm Password <span class="required-mark">*</span></label>
+          <div class="password-field-wrap">
+            <input type="password" id="regConfirmPassword" name="regConfirmPassword" placeholder="Re-enter your password" required>
+            <button type="button" class="password-toggle-btn" data-target="regConfirmPassword" aria-label="Show password">Show</button>
+          </div>
+          <div class="form-error">Passwords do not match.</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="regOrgName">Organisation / Company Name <span class="required-mark">*</span></label>
+        <input type="text" id="regOrgName" name="regOrgName" placeholder="Enter your organisation name" required>
+        <div class="form-error">Enter your organisation name.</div>
+      </div>
+
+      <div class="form-group">
+        <label for="regOrgType">Organisation Type <span class="required-mark">*</span></label>
+        <select id="regOrgType" name="regOrgType" required>
+          <option value="">Select organisation type</option>
+          <option value="proprietorship">Sole Proprietorship</option>
+          <option value="partnership">Partnership Firm</option>
+          <option value="pvt-ltd">Private Limited Company</option>
+          <option value="public-ltd">Public Limited Company</option>
+          <option value="llp">Limited Liability Partnership</option>
+          <option value="other">Other</option>
+        </select>
+        <div class="form-error">Select an organisation type.</div>
+      </div>
+
+      <div class="form-group" style="margin-top:6px;">
+        <button type="submit" class="btn btn-primary btn-block">Register</button>
+      </div>
+    </form>
+
+    <p class="auth-footer-note">Already registered? <a href="login.html">Login</a></p>
+  </div>
+</div>
+
+<a class="support-bot-link" href="https://t.me/InduSure_bot" target="_blank" rel="noopener noreferrer" aria-label="Chat with InduSure Assistant on Telegram"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10a7 7 0 1114 0 7 7 0 01-14 0z"/><path d="M7 10.5l2 2 4-4.5"/></svg><span class="support-bot-label">Chat with InduSure Assistant</span></a>
+
+<script src="js/script.js"></script>
+</body>
+</html>

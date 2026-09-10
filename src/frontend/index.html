@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InduServe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<script>
+(function () {
+  try {
+    var t = localStorage.getItem('isw_theme');
+    if (t === 'dark') { document.documentElement.setAttribute('data-theme', 'dark'); }
+  } catch (e) { /* storage unavailable */ }
+})();
+</script>
+</head>
+<body data-page="home">
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="brand">
+      <span class="brand-mark"><img src="assets/induserve-logo.png" alt="Government of India emblem"></span>
+      <span class="brand-text">
+        <span class="brand-title">InduServe</span>
+        <span class="brand-subtitle">Approvals &amp; Compliance</span>
+      </span>
+    </a>
+
+    <button class="nav-toggle" aria-label="Toggle navigation"><span></span></button>
+
+    <nav class="main-nav">
+      <a href="index.html" class="active">Home</a>
+      <a href="approvals.html">Services</a>
+      <a href="approvals.html">Approvals</a>
+      <a href="schemes.html">Schemes</a>
+      <a href="#about">About</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="icon-btn theme-toggle-btn" type="button" aria-label="Switch to dark mode" title="Switch to dark mode"></button>
+      <a href="login.html" class="btn btn-outline btn-sm">Login</a>
+      <a href="register.html" class="btn btn-primary btn-sm">Register</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container hero-inner">
+    <h1>Single Window for Industrial Approvals &amp; Compliance</h1>
+    <p>Discover approvals, manage compliance requirements, track applications and access government support services through a single platform.</p>
+    <div class="hero-actions">
+      <a href="approvals.html" class="btn btn-primary">Find Approvals</a>
+      <a href="#services" class="btn btn-secondary">Explore Services</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="problem-block">
+      <h2>Why a single window</h2>
+      <p>Starting and operating an industrial business often requires interaction with multiple departments, approval authorities and compliance systems. Businesses typically need to identify applicable licences, prepare separate applications for each department, track status across disconnected systems and keep up with recurring compliance deadlines.</p>
+      <p class="text-muted" style="margin:0;">This portal brings approval discovery, application submission, tracking, compliance management and scheme information into a single platform, so a business can manage its regulatory requirements from one place instead of several.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt" id="services">
+  <div class="container">
+    <div class="section-header">
+      <h2>Government Services</h2>
+      <p class="text-muted">Core services available through the portal.</p>
+    </div>
+    <div class="grid-3">
+      <div class="service-item">
+        <div class="service-icon" data-icon="approvals"></div>
+        <h3>Industrial Approvals</h3>
+        <p>Search applicable approvals and licences by industry, state and department, with details on eligibility, documents and fees.</p>
+      </div>
+      <div class="service-item">
+        <div class="service-icon" data-icon="tracking"></div>
+        <h3>Application Tracking</h3>
+        <p>Track the status of submitted applications against a clear, stage-by-stage timeline.</p>
+      </div>
+      <div class="service-item">
+        <div class="service-icon" data-icon="compliance"></div>
+        <h3>Compliance Management</h3>
+        <p>View recurring compliance requirements, due dates and completion status across departments.</p>
+      </div>
+      <div class="service-item">
+        <div class="service-icon" data-icon="schemes"></div>
+        <h3>Government Schemes</h3>
+        <p>Browse schemes, subsidies and incentives, and check indicative eligibility for your business.</p>
+      </div>
+      <div class="service-item">
+        <div class="service-icon" data-icon="documents"></div>
+        <h3>Document Management</h3>
+        <p>Upload and manage documents required across applications from a single account.</p>
+      </div>
+      <div class="service-item">
+        <div class="service-icon" data-icon="notifications"></div>
+        <h3>Notifications &amp; Alerts</h3>
+        <p>Receive updates on application status, upcoming deadlines and relevant scheme announcements.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="container">
+    <div class="section-header">
+      <h2>Benefits</h2>
+      <p class="text-muted">What a single-window approach aims to improve.</p>
+    </div>
+    <ul class="benefit-list">
+      <li><span class="benefit-tick">&#10003;</span> Single-window access to approvals across departments</li>
+      <li><span class="benefit-tick">&#10003;</span> Reduced manual, paper-based processes</li>
+      <li><span class="benefit-tick">&#10003;</span> Transparent, stage-wise application tracking</li>
+      <li><span class="benefit-tick">&#10003;</span> Centralised storage for application documents</li>
+      <li><span class="benefit-tick">&#10003;</span> Reminders for recurring compliance deadlines</li>
+      <li><span class="benefit-tick">&#10003;</span> Easier discovery of government schemes and incentives</li>
+    </ul>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h4>InduServe</h4>
+        <p style="color:#C7D2DC; font-size:13.5px; max-width:320px;">A single platform to discover approvals, manage compliance and access government support services.</p>
+      </div>
+      <div>
+        <h4>About Portal</h4>
+        <ul>
+          <li><a href="#about">About Portal</a></li>
+          <li><a href="approvals.html">Services</a></li>
+          <li><a href="schemes.html">Schemes</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">Help</a></li>
+          <li><a href="#">Sitemap</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Use</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="disclaimer">This portal is a prototype developed for demonstration purposes as part of a hackathon submission. It is not affiliated with, and does not represent, any government department. Data shown throughout the portal is illustrative.</p>
+    <div class="footer-bottom">
+      <span>&copy; 2026 InduServe (Prototype)</span>
+      <span>Prototype build - not a live government service</span>
+    </div>
+  </div>
+</footer>
+
+<a class="support-bot-link" href="https://t.me/InduSure_bot" target="_blank" rel="noopener noreferrer" aria-label="Chat with InduSure Assistant on Telegram"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10a7 7 0 1114 0 7 7 0 01-14 0z"/><path d="M7 10.5l2 2 4-4.5"/></svg><span class="support-bot-label">Chat with InduSure Assistant</span></a>
+
+<script src="js/script.js"></script>
+</body>
+</html>
