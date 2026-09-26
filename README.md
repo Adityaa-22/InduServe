@@ -1,6 +1,6 @@
-# InduServer – Government Service & Application Management Platform
+# InduServe – Government Service & Application Management Platform
 
-InduServer is a unified digital platform designed to simplify access to government services by helping users discover relevant services, understand requirements, prepare required information and documents, submit applications, and track application status through a centralized interface.
+InduServe is a unified digital platform designed to simplify access to government services by helping users discover relevant services, understand requirements, prepare required information and documents, submit applications, and track application status through a centralized interface.
 
 The platform aims to reduce the complexity of navigating multiple government services and make the overall application process more structured, accessible, and user-friendly.
 
@@ -8,7 +8,7 @@ The platform aims to reduce the complexity of navigating multiple government ser
 
 ## 1. Project Information
 
-- **Project Title:** InduServer
+- **Project Title:** InduServe
 - **Problem Statement ID:** SIH26130
 - **Problem Statement:** Digital platform for simplifying access to government services and assisting citizens with service discovery, requirements, documentation, and application processes
 - **Category:** Software
@@ -38,7 +38,7 @@ There is a need for a centralized platform that can guide users through the gove
 
 ## 3. Proposed Solution
 
-InduServer provides a centralized interface through which users can discover relevant government services and understand the requirements associated with them.
+InduServe provides a centralized interface through which users can discover relevant government services and understand the requirements associated with them.
 
 The platform combines service discovery, requirement guidance, document management, application management, compliance information, notifications, and status tracking into a unified workflow.
 
@@ -86,7 +86,7 @@ Instead of requiring users to manually search through multiple services and requ
 
 ## 4.1 Government Service Discovery
 
-InduServer provides a centralized interface for discovering relevant government services.
+InduServe provides a centralized interface for discovering relevant government services.
 
 Users can explore available services and identify the service that best matches their requirement.
 
